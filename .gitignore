@@ -125,3 +125,14 @@ all.config
 
 # fetched Android config fragments
 kernel/configs/android-*.cfg
+
+# TC
+gcc/
+clang/
+NORD/
+out/
+
+# Extra scripts
+test.sh
+test1.sh
+neel.sh
