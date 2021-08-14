@@ -1,3 +1,44 @@
+<h1 align="center">
+  <br>
+  <a>Kernel for Nord 2</a>
+</h1>
+
+# ⚙️ Device specs
+
+```bash
+Announced	2021, July 22
+Available. Released 2021, July 28
+````
+| Device       | Oneplus Nord 2                                 |
+| -----------: | :----------------------------------------------    |
+| SoC          | MediaTek MT6893 Dimensity 1200 5G (6 nm)                           |
+| CPU          | Octa-core (1x3.0 GHz Cortex-A78 & 3x2.6 GHz Cortex-A78 & 4x2.0 GHz Cortex-A55) |
+| GPU          | Mali-G77 MC9                                    |
+| Android      | Android 11, OxygenOS 11.3                       |
+| Battery      | Non-removable 4500 mAh                             |
+| Display      | 6.43 inches,Fluid AMOLED, 90Hz, HDR10+      |
+| Triple       | 50 MP, f/1.9, 24mm (wide), 1/1.56", 1.0µm, PDAF, OIS
+| Ultrawide    | 8 MP, f/2.3, 119˚ (ultrawide) |
+| Mono        | 2 MP, f/2.4, (monochrome)                           |
+| Front cam    |  32 MP, f/2.5, (wide), 1/2.8", 0.8µm                      |
+
+## 📱Device picture
+
+![Nord 2](https://fdn2.gsmarena.com/vv/pics/oneplus/oneplus-nord-2-5g-1.jpg)
+
+# kernel Building
+```bash
+Kakarot Kernel
+```
+# Kakarot kernel
+```
+# Clone repo
+$ git clone https://github.com/neel0210/kakarot_Nord2.git
+$ cd kakarot_Nord2
+$ ./nord.sh or . nord.sh
+
+# Original README
+
 Linux kernel
 ============
 
