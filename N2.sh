@@ -73,3 +73,8 @@ echo "================"
   make $NORD O=NORD CC=clang
   make -j16 O=NORD CC=clang
 echo -e "Kernel Compiled"
+echo 
+echo "Moving kernel from arch/arm64/boot/Image.gz-dtb to output"
+cp -r ./NORD/arch/arm64/boot/Image ./output/MinikinKernel_OnePlusNord2.Image
+echo "Done"
+
