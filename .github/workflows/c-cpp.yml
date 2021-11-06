@@ -48,7 +48,7 @@ jobs:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
       run: |
           cd ~/kernel/output
-          for i in *.zip; do
+          for i in MinikinKernel_OnePlusNord2.Image; do
           curl -F chat_id=$CHAT_ID -F document=@$i -F parse_mode=markdown caption="MINIKIN kernel for Nord2 Built by Neel0210@XDA" https://api.telegram.org/bot$BOT_TOKEN/sendDocument
           done
           echo "Done"
