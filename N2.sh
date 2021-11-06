@@ -1,0 +1,75 @@
+#
+#!/bin/bash
+
+# TC LOCAL PATH
+export CROSS_COMPILE=$(pwd)/gcc/bin/aarch64-linux-android-
+export CLANG_TRIPLE=$(pwd)/clang/bin/aarch64-linux-gnu-
+export CC=$(pwd)/clang/bin/clang
+
+sudo apt-get update
+sudo DEBIAN_FRONTEND=noninteractive apt-get install \
+          bison build-essential curl flex git gnupg gperf \
+          liblz4-tool libncurses5-dev libsdl1.2-dev libxml2 \
+          libxml2-utils lzop pngcrush schedtool \
+          squashfs-tools xsltproc zip zlib1g-dev \
+          build-essential kernel-package libncurses5-dev \
+          bzip2 git python expect \
+          gcc-aarch64-linux-gnu g++-aarch64-linux-gnu -y
+
+#
+curl https://raw.githubusercontent.com/akhilnarang/scripts/master/setup/android_build_env.sh | bash
+
+# Check if have gcc/32 & clang folder
+if [ ! -d "$(pwd)/gcc/" ]; then
+   git clone --depth 1 git://github.com/LineageOS/android_prebuilts_gcc_linux-x86_aarch64_aarch64-linux-android-4.9 gcc
+fi
+
+if [ ! -d "$(pwd)/clang/" ]; then
+   git clone --depth 1 https://github.com/PrishKernel/toolchains.git -b proton-clang12 clang
+fi
+
+export ARCH=arm64
+export SUBARCH=arm64
+export ANDROID_MAJOR_VERSION=r
+export PLATFORM_VERSION=11.0.0
+
+# Device
+export NORD=oplus6893_defconfig
+
+# Export KBUILD flags
+export KBUILD_BUILD_USER=neel0210
+export KBUILD_BUILD_HOST=hell
+
+# CCACHE
+export CCACHE="$(which ccache)"
+export USE_CCACHE=1
+ccache -M 50G
+export CCACHE_COMPRESS=1
+
+# TC LOCAL PATH
+export CROSS_COMPILE=$(pwd)/gcc/bin/aarch64-linux-android-
+export CLANG_TRIPLE=$(pwd)/clang/bin/aarch64-linux-gnu-
+export CC=$(pwd)/clang/bin/clang
+
+# Check if have gcc & clang and AK
+if [ ! -d gcc ]; then
+   git clone --depth 1 git://github.com/LineageOS/android_prebuilts_gcc_linux-x86_aarch64_aarch64-linux-android-4.9 gcc
+fi
+
+if [ ! -d clang ]; then
+  git clone --depth 1 https://github.com/kdrag0n/proton-clang.git clang
+fi
+
+# Trigger Oplus script
+. oplus_native_features.sh
+clear
+# Calculate compilation time
+  rm -rf NORD
+#  rm ./NORD/arch/arm64/boot/Image
+echo "================"
+echo "Compiling Kernel"
+echo "================"
+  echo -e "$LOGO\n"
+  make $NORD O=NORD CC=clang
+  make -j16 O=NORD CC=clang
+echo -e "Kernel Compiled"
